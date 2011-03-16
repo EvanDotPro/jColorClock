@@ -43,25 +43,22 @@ function getColor() {
     var currentTime = new Date();
     
     // Set the hours, minutes and seconds to variables
-    var hours   = Math.round(currentTime.getHours() * 11.09);
-    var minutes = Math.round(currentTime.getMinutes() * 4.32);
-    var seconds = Math.round(currentTime.getSeconds() * 4.32);
+    var hours   = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
+
+    var hex = ((hours * 3600) + (minutes * 60) + seconds) * 193.97;
+    
     
     // Convert decimal to hex
-    var r = hours.toString(16);
-    var g = minutes.toString(16);
-    var b = seconds.toString(16);
+    var hex = Math.round(hex);
+    var hex = hex.toString(16);
+    console.log(hex);
     
-    // Fix string lengths if needed
-    if (r.length < 2) { r = '0' + r; }
-    if (g.length < 2) { g = '0' + g; }
-    if (b.length < 2) { b = '0' + b; }
-
-    // Construct a string of the current time
-    var hex = r + g + b;
+    while (hex.length < 6) {
+        var hex = '0' + hex;        
+    }
     
-    
-    console.log(r + '/' + g + '/' + b);
     
     // Return the color string
     return hex;
